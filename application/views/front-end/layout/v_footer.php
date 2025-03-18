@@ -1,29 +1,38 @@
+<style>
+  /* .footer .footer-top {
+    background: white url(./footer-bg.png) no-repeat right top;
+    background-size: contain;
+    border-top: 1px solid rgb(238, 219, 177);
+    border-bottom: 1px solid rgb(238, 219, 177);
+    padding: 60px 0 30px 0;
+  } */
+</style>
 <!-- ======= Footer ======= -->
-<footer id="footer" class="footer">
+<footer id="footer" class="footer" style="background: rgb(238, 219, 177);">
 
-  <div class="footer-newsletter">
+  <div class="footer-newsletter" style="background: rgb(238, 219, 177);">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-12 text-center">
-          <h4>Our Newsletter</h4>
+          <h4 style="color: #684c0f;">Our Newsletter</h4>
           <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
         </div>
         <div class="col-lg-6">
           <form action="" method="post">
-            <input type="email" name="email"><input type="submit" value="Subscribe">
+            <input type="email" name="email"><input type="submit" value="Subscribe" style="background: #faebcd; color: #684c0f;">
           </form>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="footer-top">
+  <div class="footer-top"  style="background: rgb(238, 219, 177);">
     <div class="container">
       <div class="row gy-4">
-        <div class="col-lg-5 col-md-12 footer-info card shadow-none flex-column gap-3">
+        <div class="col-lg-5 col-md-12 footer-info card shadow-none flex-column gap-3"  style="background: rgb(238, 219, 177); ">
           <a href="<?= base_url('home'); ?>" class="logo d-flex align-items-center">
             <img src="<?= base_url('assets/img/company/') . $image; ?>" alt="">
-            <span><?= $setting->nama_perusahaan; ?></span>
+            <span class="text-dark"><?= $setting->nama_perusahaan; ?></span>
           </a>
           <p><?= $setting->profile; ?></p>
           <div class="social-links mt-3">
@@ -67,14 +76,15 @@
   </div>
 
   <div class="container">
-    <div class="copyright">
+    <div class="copyright text-dark">
       &copy; Copyright <strong><span><?= date('Y'); ?></span></strong>. All Rights Reserved
     </div>
   </div>
   </div>
 </footer><!-- End Footer -->
 
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center" style="background:rgb(214, 193, 152);   border-top: 1px solid rgb(238, 219, 177);
+  border-bottom: 1px solid rgb(238, 219, 177);"><i class="bi bi-arrow-up-short " style="color: #000"></i></a>
 
 <!-- Vendor JS Files -->
 <script src="<?= base_url(); ?>vendor/front-end/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>

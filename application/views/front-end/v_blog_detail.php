@@ -117,8 +117,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $stmt->execute();
 
   // Redirect untuk refresh halaman agar komentar langsung muncul
-  header("Location: " . $_SERVER['REQUEST_URI']);
-  exit();
+  // header("Location: " . $_SERVER['REQUEST_URI']);
+  // exit();
 }
 
 // init output
@@ -200,18 +200,76 @@ $total_comments = $row['total_comments'];
 $stmt->close();
 
 ?>
-<main id="main">
+<style>
+  .blog .sidebar .tags ul a {
+    color: #684c0f;
+    border: 1px solid rgb(236, 208, 132);
+    background: #faebcd;
+  }
+
+  .blog .sidebar .tags ul a:hover {
+    color: #000;
+    border: 1px solid rgb(232, 207, 155);
+    background: rgb(232, 207, 155);
+  }
+
+  .blog .sidebar .tags ul a span {
+    color: rgb(254, 223, 165);
+  }
+
+  .blog .blog-comments .comment h5 a {
+    color: rgb(111, 98, 66);
+  }
+
+  .blog .blog-comments .comment time {
+    color: rgb(163, 122, 1);
+  }
+
+  .blog .blog-comments .reply-form {
+    background: rgb(238, 219, 177);
+  }
+
+  .blog .blog-comments .reply-form input {
+    background: #faebcd;
+  }
+
+  .blog .blog-comments .reply-form input:focus {
+    border-color: rgb(248, 220, 160);
+  }
+
+  .blog .blog-comments .reply-form textarea {
+    background: #faebcd;
+  }
+
+  .blog .blog-comments .reply-form textarea:focus {
+    border-color: rgb(248, 220, 160);
+  }
+
+  .blog .blog-comments .reply-form .btn-primary {
+    background-color: rgb(112, 90, 1);
+  }
+
+  .blog .blog-comments .reply-form .btn-primary:hover {
+    background-color: rgb(137, 96, 1);
+  }
+
+  .blog .blog-pagination li.active,
+  .blog .blog-pagination li:hover {
+    background: rgb(216, 190, 132);
+  }
+</style>
+<main id="main" style="background: #faebcd;">
 
   <!-- ======= Breadcrumbs ======= -->
-  <section class="breadcrumbs">
+  <section class="breadcrumbs" style="background: rgb(238, 219, 177);">
     <div class="container">
 
       <ol>
-        <li><a href="<?= base_url('home/#hero'); ?>">Home</a></li>
-        <li><a href="<?= base_url('home/blog'); ?>">Blog</a></li>
-        <li><?= $berita->judul_berita; ?></li>
+        <li><a style="color:rgb(141, 104, 31);" href="<?= base_url('home/#hero'); ?>">Home</a></li>
+        <li><a style="color:rgb(141, 104, 31);" href="<?= base_url('home/blog'); ?>">Blog</a></li>
+        <li style="color:rgb(141, 104, 31);"><?= $berita->judul_berita; ?></li>
       </ol>
-      <h2><?= $berita->judul_berita; ?></h2>
+      <h2 style="color:rgb(141, 104, 31);"><?= $berita->judul_berita; ?></h2>
 
     </div>
   </section><!-- End Breadcrumbs -->
@@ -224,21 +282,21 @@ $stmt->close();
 
         <div class="col-lg-8 entries">
 
-          <div class="card entry entry-single">
+          <div class="card entry entry-single" style="background: rgb(238, 219, 177);">
 
             <div class="entry-img">
               <img src="<?= base_url('assets/img/berita/') . $berita->gambar_berita; ?>" alt="" class="img-responsive center-block d-block mx-auto">
             </div>
 
             <h2 class="entry-title">
-              <a href=""><?= $berita->judul_berita; ?></a>
+              <a class="text-dark" href=""><?= $berita->judul_berita; ?></a>
             </h2>
 
             <div class="entry-meta">
               <ul>
-                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a><?= $berita->nama; ?></a></li>
-                <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a><?= date('d-M-Y H:i', strtotime($berita->date_cretated)); ?></a></li>
-                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a><?= $total_comments; ?> Comments</a></li>
+                <li class="d-flex align-items-center"><i class="bi bi-person" style="color: rgb(155, 114, 32);"></i> <a><?= $berita->nama; ?></a></li>
+                <li class="d-flex align-items-center"><i class="bi bi-clock" style="color: rgb(155, 114, 32);"></i> <a><?= date('d-M-Y H:i', strtotime($berita->date_cretated)); ?></a></li>
+                <li class="d-flex align-items-center"><i class="bi bi-chat-dots" style="color: rgb(155, 114, 32);"></i> <a><?= $total_comments; ?> Comments</a></li>
               </ul>
             </div>
 
@@ -247,12 +305,12 @@ $stmt->close();
             </div>
 
             <div class="entry-footer">
-              <i class="bi bi-folder"></i>
+              <i class="bi bi-folder" style="color: #684c0f;"></i>
               <ul class="cats">
                 <li><a href="#">Business</a></li>
               </ul>
 
-              <i class="bi bi-tags"></i>
+              <i class="bi bi-tags" style="color: #684c0f;"></i>
               <ul class="tags">
                 <?= $berita->keywords; ?>
               </ul>
@@ -260,7 +318,7 @@ $stmt->close();
 
           </div><!-- End blog entry -->
 
-          <div class="blog-author d-flex align-items-center">
+          <div class="blog-author d-flex align-items-center" style="background: rgb(238, 219, 177);">
             <img src="<?= base_url('assets/img/profile/' . $berita->image); ?>" class="rounded-circle float-left" alt="">
             <div>
               <h4><?= $berita->nama; ?></h4>
@@ -269,7 +327,7 @@ $stmt->close();
                 <a href="https://facebook.com/#"><i class="bi bi-facebook"></i></a>
                 <a href="https://instagram.com/#"><i class="biu bi-instagram"></i></a>
               </div>
-              <p>
+              <p style="color: #684c0f;">
                 Itaque quidem optio quia voluptatibus dolorem dolor. Modi eum sed possimus accusantium. Quas repellat voluptatem officia numquam sint aspernatur voluptas. Esse et accusantium ut unde voluptas.
               </p>
             </div>
@@ -284,6 +342,7 @@ $stmt->close();
             <div class="reply-form">
               <h4>Leave a Reply</h4>
               <p>Your email address will not be published. Required fields are marked * </p>
+
               <form action="" method="post">
                 <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
                 <input type="hidden" name="parent_id" id="parent_id" value="0">
@@ -306,6 +365,7 @@ $stmt->close();
                     <textarea name="komentar" class="form-control" placeholder="Your Comment*"></textarea>
                   </div>
                 </div>
+                <input type="hidden" name="parent_id" id="parent_id" value="0">
                 <button type="submit" class="btn btn-primary">Post Comment</button>
               </form>
             </div>
@@ -316,40 +376,39 @@ $stmt->close();
 
         <div class="col-lg-4">
 
-          <div class="sidebar">
+          <div class="sidebar" style="background: rgb(238, 219, 177);">
 
-            <h3 class="sidebar-title">Search</h3>
+            <h3 class="sidebar-title text-dark">Search</h3>
             <div class="sidebar-item search-form">
               <form action="">
                 <input type="text">
-                <button type="submit"><i class="bi bi-search"></i></button>
+                <button type="submit" style="background: #faebcd;"><i class="bi bi-search text-dark"></i></button>
               </form>
             </div><!-- End sidebar search formn-->
 
-            <h3 class="sidebar-title">Categories</h3>
+            <h3 class="sidebar-title text-dark">Kategori</h3>
             <div class="sidebar-item categories">
               <ul>
                 <?php foreach ($kategori as $key => $values) : ?>
-                  <li><a href="#"><?= $values->nama_kategori; ?> <span>(25)</span></a></li>
+                  <li><a class="text-dark" href="#"><?= $values->nama_kategori; ?> <span>(25)</span></a></li>
                 <?php endforeach; ?>
               </ul>
             </div><!-- End sidebar categories-->
-
-            <h3 class="sidebar-title">Recent Posts</h3>
+            <!-- PRINT DATA BERITA -->
+            <h3 class="sidebar-title text-dark">Recent Posts</h3>
             <?php foreach ($lastst_berita as $key => $value) :
               // CEK KONDISI BERITA
+
               if ($value->status_berita == "Publish") : ?>
                 <div class="sidebar-item recent-posts">
                   <div class="post-item clearfix">
                     <img src="<?= base_url('assets/img/berita/') . $value->gambar_berita; ?>" alt="">
-                    <h4><a href="<?= base_url('home/detail/' . $value->slug_berita); ?>"><?= $value->judul_berita; ?></a></h4>
+                    <h4><a class="text-dark" href="<?= base_url('home/detail/' . $value->slug_berita); ?>"><?= $value->judul_berita; ?></a></h4>
                     <time datetime="01-01-2020"><?= date('d-m-Y H:i', strtotime($value->date_cretated)); ?></time>
                   </div>
                 </div><!-- End sidebar recent posts-->
               <?php endif; ?>
             <?php endforeach; ?>
-            <!-- End sidebar recent posts-->
-
             <h3 class="sidebar-title">Tags</h3>
             <div class="sidebar-item tags">
               <ul>
