@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 17 Mar 2025 pada 07.56
--- Versi server: 10.4.32-MariaDB
--- Versi PHP: 8.0.30
+-- Generation Time: Apr 07, 2025 at 03:05 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,29 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_berita`
+-- Table structure for table `request_logs`
+--
+
+CREATE TABLE `request_logs` (
+  `id` int(11) NOT NULL,
+  `ip_address` varchar(45) DEFAULT NULL,
+  `request_time` datetime DEFAULT NULL,
+  `request_count` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `request_logs`
+--
+
+INSERT INTO `request_logs` (`id`, `ip_address`, `request_time`, `request_count`) VALUES
+(1, '::1', '2025-03-18 10:35:57', 9),
+(2, '::1', '2025-03-21 04:44:32', 5),
+(3, '::1', '2025-03-21 05:48:54', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_berita`
 --
 
 CREATE TABLE `tb_berita` (
@@ -43,7 +65,7 @@ CREATE TABLE `tb_berita` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tb_berita`
+-- Dumping data for table `tb_berita`
 --
 
 INSERT INTO `tb_berita` (`id_berita`, `id_user`, `id_kategori`, `slug_berita`, `judul_berita`, `isi_berita`, `gambar_berita`, `status_berita`, `jenis_berita`, `keywords`, `date_cretated`, `last_modified`) VALUES
@@ -67,7 +89,7 @@ INSERT INTO `tb_berita` (`id_berita`, `id_user`, `id_kategori`, `slug_berita`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_client`
+-- Table structure for table `tb_client`
 --
 
 CREATE TABLE `tb_client` (
@@ -85,7 +107,7 @@ CREATE TABLE `tb_client` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tb_client`
+-- Dumping data for table `tb_client`
 --
 
 INSERT INTO `tb_client` (`id_client`, `jenis_client`, `nama_client`, `alamat`, `no_telepon`, `email_client`, `website`, `gambar_client`, `publish`, `date_created`, `last_modified`) VALUES
@@ -99,7 +121,7 @@ INSERT INTO `tb_client` (`id_client`, `jenis_client`, `nama_client`, `alamat`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_file`
+-- Table structure for table `tb_file`
 --
 
 CREATE TABLE `tb_file` (
@@ -111,7 +133,7 @@ CREATE TABLE `tb_file` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_kategori_berita`
+-- Table structure for table `tb_kategori_berita`
 --
 
 CREATE TABLE `tb_kategori_berita` (
@@ -122,7 +144,7 @@ CREATE TABLE `tb_kategori_berita` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tb_kategori_berita`
+-- Dumping data for table `tb_kategori_berita`
 --
 
 INSERT INTO `tb_kategori_berita` (`id_kategori`, `slug-kategori`, `nama_kategori`, `date_created`) VALUES
@@ -133,7 +155,7 @@ INSERT INTO `tb_kategori_berita` (`id_kategori`, `slug-kategori`, `nama_kategori
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_kategori_client`
+-- Table structure for table `tb_kategori_client`
 --
 
 CREATE TABLE `tb_kategori_client` (
@@ -144,7 +166,7 @@ CREATE TABLE `tb_kategori_client` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tb_kategori_client`
+-- Dumping data for table `tb_kategori_client`
 --
 
 INSERT INTO `tb_kategori_client` (`id_kategori`, `slug_kategori`, `nama_kategori`, `date_created`) VALUES
@@ -158,7 +180,7 @@ INSERT INTO `tb_kategori_client` (`id_kategori`, `slug_kategori`, `nama_kategori
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_kategori_portfolio`
+-- Table structure for table `tb_kategori_portfolio`
 --
 
 CREATE TABLE `tb_kategori_portfolio` (
@@ -169,7 +191,7 @@ CREATE TABLE `tb_kategori_portfolio` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tb_kategori_portfolio`
+-- Dumping data for table `tb_kategori_portfolio`
 --
 
 INSERT INTO `tb_kategori_portfolio` (`id_kategori`, `slug_kategori`, `nama_kategori`, `date_created`) VALUES
@@ -179,7 +201,7 @@ INSERT INTO `tb_kategori_portfolio` (`id_kategori`, `slug_kategori`, `nama_kateg
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_kategori_staff`
+-- Table structure for table `tb_kategori_staff`
 --
 
 CREATE TABLE `tb_kategori_staff` (
@@ -190,7 +212,7 @@ CREATE TABLE `tb_kategori_staff` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tb_kategori_staff`
+-- Dumping data for table `tb_kategori_staff`
 --
 
 INSERT INTO `tb_kategori_staff` (`id_kategori`, `slug_kategori`, `nama_kategori`, `date_created`) VALUES
@@ -201,7 +223,34 @@ INSERT INTO `tb_kategori_staff` (`id_kategori`, `slug_kategori`, `nama_kategori`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_layanan`
+-- Table structure for table `tb_komentar`
+--
+
+CREATE TABLE `tb_komentar` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(50) DEFAULT NULL,
+  `komentar` text NOT NULL,
+  `parent_id` int(11) DEFAULT NULL,
+  `tanggal_komen` datetime DEFAULT NULL,
+  `berita_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tb_komentar`
+--
+
+INSERT INTO `tb_komentar` (`id`, `nama`, `komentar`, `parent_id`, `tanggal_komen`, `berita_id`) VALUES
+(1, '1', '1', 0, '2025-03-18 10:35:57', 24),
+(2, '1', '1', 0, '2025-03-18 10:36:26', 24),
+(15, '2', '2', 0, '2025-03-21 05:48:54', 24),
+(16, '2', '2', 2, '2025-03-21 05:53:57', 24),
+(17, '3', '3', 16, '2025-03-21 05:54:03', 24),
+(18, '12', '12', 2, '2025-03-21 05:54:10', 24);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_layanan`
 --
 
 CREATE TABLE `tb_layanan` (
@@ -217,7 +266,7 @@ CREATE TABLE `tb_layanan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tb_layanan`
+-- Dumping data for table `tb_layanan`
 --
 
 INSERT INTO `tb_layanan` (`id_layanan`, `id_user`, `slug_layanan`, `judul_layanan`, `isi_layanan`, `gambar_layanan`, `status_layanan`, `date_cretated`, `last_modified`) VALUES
@@ -232,7 +281,7 @@ INSERT INTO `tb_layanan` (`id_layanan`, `id_user`, `slug_layanan`, `judul_layana
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_portfolio`
+-- Table structure for table `tb_portfolio`
 --
 
 CREATE TABLE `tb_portfolio` (
@@ -253,7 +302,7 @@ CREATE TABLE `tb_portfolio` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tb_portfolio`
+-- Dumping data for table `tb_portfolio`
 --
 
 INSERT INTO `tb_portfolio` (`id_portfolio`, `id_user`, `nama_layanan`, `id_client`, `judul_portfolio`, `slug_portfolio`, `gambar_portfolio`, `isi_portfolio`, `website_portfolio`, `status_portfolio`, `date_created`, `testimoni`, `last_modified`, `date_project`) VALUES
@@ -271,7 +320,7 @@ INSERT INTO `tb_portfolio` (`id_portfolio`, `id_user`, `nama_layanan`, `id_clien
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_setting`
+-- Table structure for table `tb_setting`
 --
 
 CREATE TABLE `tb_setting` (
@@ -288,7 +337,7 @@ CREATE TABLE `tb_setting` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tb_setting`
+-- Dumping data for table `tb_setting`
 --
 
 INSERT INTO `tb_setting` (`id_setting`, `nama_perusahaan`, `alamat`, `no_telepon`, `email`, `profile`, `visi`, `misi`, `sejarah`, `image`) VALUES
@@ -297,7 +346,7 @@ INSERT INTO `tb_setting` (`id_setting`, `nama_perusahaan`, `alamat`, `no_telepon
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_staff`
+-- Table structure for table `tb_staff`
 --
 
 CREATE TABLE `tb_staff` (
@@ -315,17 +364,35 @@ CREATE TABLE `tb_staff` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tb_staff`
+-- Dumping data for table `tb_staff`
 --
 
 INSERT INTO `tb_staff` (`id_staff`, `id_kategori`, `nama_staff`, `email_staff`, `alamat`, `no_telepon`, `gambar_staff`, `gender`, `publish`, `date_created`, `last_modified`) VALUES
-(500, 14, 'Dr. Riyanita, SH MM, CTA', 'tes@gmail.com', 'nongsa', '088765435346', 'Screenshot_2024-12-25_222206.png', 'Perempuan', 'Publish', '2025-03-16 12:20:03', '0000-00-00'),
-(501, 13, 'Aris, SH', 'aris@gmail.com', 'batam', '08746354653', 'Screenshot_2024-12-25_222212.png', 'Laki-Laki', 'Publish', '2025-03-16 12:21:33', '0000-00-00');
+(500, 14, 'Dr. Riyanita, SH MM, CTA', 'tes@gmail.com', 'nongsa', '088765435346', '4.jpg', 'Perempuan', 'Publish', '2025-04-03 02:46:10', '0000-00-00'),
+(501, 13, 'Aris, SH', 'aris@gmail.com', 'batam', '08746354653', '1.jpg', 'Laki-Laki', 'Publish', '2025-04-03 02:37:34', '0000-00-00'),
+(502, 15, 'Dr. dr. Sri Enny Mainiarti, SH, MKM, CTA', '', '', '', '4.jpg', '', 'Publish', '2025-04-03 02:46:29', '0000-00-00'),
+(503, 16, 'Dr. Neneng Khafidho, S.S, MM, CTA', '', '', '', '3.jpg', '', 'Publish', '2025-04-03 02:45:26', '0000-00-00'),
+(504, 17, 'Rukhiyat Auditiar, SH', '', '', '', '5.jpg', '', 'Publish', '2025-04-03 02:52:05', '0000-00-00'),
+(505, 18, 'Muhammad Fahdi, SH', '', '', '', '1.jpg', '', 'Publish', '2025-04-03 02:52:14', '0000-00-00'),
+(506, 19, 'Jepri Suranta Purba, SH', '', '', '', '2.jpg', '', 'Publish', '2025-04-03 02:52:18', '0000-00-00'),
+(507, 20, 'Roger Morrow Sirumapea, SH', '', '', '', '5.jpg', '', 'Publish', '2025-04-03 02:52:23', '0000-00-00'),
+(508, 21, 'Daffarel Derbi Syahrezi, SH', '', '', '', '1.jpg', '', 'Publish', '2025-04-03 02:52:27', '0000-00-00'),
+(509, 22, 'Farah Nur Risa, SH, Bachelor of Science (Hons)', '', '', '', '3.jpg', '', 'Publish', '2025-04-03 02:52:31', '0000-00-00'),
+(510, 23, 'Yayan Setiawan, SH, MH, CPM', '', '', '', '2.jpg', '', 'Publish', '2025-04-03 02:52:35', '0000-00-00'),
+(511, 15, 'Dr. dr. Sri Enny Mainiarti, SH, MKM, CTA', '', '', '', '4.jpg', '', 'Publish', '2025-04-02 19:46:29', '0000-00-00'),
+(512, 16, 'Dr. Neneng Khafidho, S.S, MM, CTA', '', '', '', '3.jpg', '', 'Publish', '2025-04-02 19:45:26', '0000-00-00'),
+(513, 17, 'Rukhiyat Auditiar, SH', '', '', '', '5.jpg', '', 'Publish', '2025-04-02 19:52:05', '0000-00-00'),
+(514, 18, 'Muhammad Fahdi, SH', '', '', '', '1.jpg', '', 'Publish', '2025-04-02 19:52:14', '0000-00-00'),
+(515, 19, 'Jepri Suranta Purba, SH', '', '', '', '2.jpg', '', 'Publish', '2025-04-02 19:52:18', '0000-00-00'),
+(516, 20, 'Roger Morrow Sirumapea, SH', '', '', '', '5.jpg', '', 'Publish', '2025-04-02 19:52:23', '0000-00-00'),
+(517, 21, 'Daffarel Derbi Syahrezi, SH', '', '', '', '1.jpg', '', 'Publish', '2025-04-02 19:52:27', '0000-00-00'),
+(518, 22, 'Farah Nur Risa, SH, Bachelor of Science (Hons)', '', '', '', '3.jpg', '', 'Publish', '2025-04-02 19:52:31', '0000-00-00'),
+(519, 23, 'Yayan Setiawan, SH, MH, CPM', '', '', '', '2.jpg', '', 'Publish', '2025-04-02 19:52:35', '0000-00-00');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_user`
+-- Table structure for table `tb_user`
 --
 
 CREATE TABLE `tb_user` (
@@ -341,16 +408,17 @@ CREATE TABLE `tb_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tb_user`
+-- Dumping data for table `tb_user`
 --
 
 INSERT INTO `tb_user` (`id_user`, `id_kategori`, `nama`, `email`, `image`, `password`, `role_id`, `is_active`, `date_created`) VALUES
-(1, 0, 'Fiaa', 'admin@admin.com', 'Screenshot_2024-12-25_222206.png', '$2y$10$wRuLtICRfkAc2cm0PgSnnORtWBDZdnKYDTwCvLjmlecabQV0uTrSu', 1, 1, 1619931701);
+(1, 0, 'Fiaa', 'admin@admin.com', 'Screenshot_2024-12-25_222206.png', '$2y$10$wRuLtICRfkAc2cm0PgSnnORtWBDZdnKYDTwCvLjmlecabQV0uTrSu', 1, 1, 1619931701),
+(12, 2, 'dry', 'dry@dryn.com', 'default.png', '$2y$10$XJ9JxjSXtSCS3T4HyyeM9.PUpYvvH6fh3jIUx5QyEC7WEMJm4a1kG', 1, 1, 1743646574);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_user_token`
+-- Table structure for table `tb_user_token`
 --
 
 CREATE TABLE `tb_user_token` (
@@ -361,7 +429,7 @@ CREATE TABLE `tb_user_token` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tb_user_token`
+-- Dumping data for table `tb_user_token`
 --
 
 INSERT INTO `tb_user_token` (`id`, `email`, `token`, `date_created`) VALUES
@@ -370,171 +438,196 @@ INSERT INTO `tb_user_token` (`id`, `email`, `token`, `date_created`) VALUES
 (8, 'alimochtar2023@gmail.com', 'LrCbAh095l51PaXy0127epMEG7PzCD9CG0nDz36BlNY=', 1695197875),
 (9, 'alimochtar2023@gmail.com', 'vgfJWL1T74Bvg+o5t0NsGP962TXNsxleYxDIpgcjfHc=', 1695198021),
 (10, 'alimochtar2023@gmail.com', 'ZaNv/dkw6r6+syHLGEOl9maL5pnJU/Unf3l4huSWDLs=', 1695198103),
-(11, 'alimochtar2023@gmail.com', 'QX1y3L856jGejeFmSPL4VDVmQ545ekVu72KLjVB4Oaw=', 1695198198);
+(11, 'alimochtar2023@gmail.com', 'QX1y3L856jGejeFmSPL4VDVmQ545ekVu72KLjVB4Oaw=', 1695198198),
+(12, 'dry@dryn.com', 'e7RrxoG4D6wLiLx3RgtZ7n+dgYehya4iXoewPBUvPWA=', 1743646574);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `tb_berita`
+-- Indexes for table `request_logs`
+--
+ALTER TABLE `request_logs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_berita`
 --
 ALTER TABLE `tb_berita`
   ADD PRIMARY KEY (`id_berita`);
 
 --
--- Indeks untuk tabel `tb_client`
+-- Indexes for table `tb_client`
 --
 ALTER TABLE `tb_client`
   ADD PRIMARY KEY (`id_client`);
 
 --
--- Indeks untuk tabel `tb_file`
+-- Indexes for table `tb_file`
 --
 ALTER TABLE `tb_file`
   ADD PRIMARY KEY (`id_file`);
 
 --
--- Indeks untuk tabel `tb_kategori_berita`
+-- Indexes for table `tb_kategori_berita`
 --
 ALTER TABLE `tb_kategori_berita`
   ADD PRIMARY KEY (`id_kategori`);
 
 --
--- Indeks untuk tabel `tb_kategori_client`
+-- Indexes for table `tb_kategori_client`
 --
 ALTER TABLE `tb_kategori_client`
   ADD PRIMARY KEY (`id_kategori`);
 
 --
--- Indeks untuk tabel `tb_kategori_portfolio`
+-- Indexes for table `tb_kategori_portfolio`
 --
 ALTER TABLE `tb_kategori_portfolio`
   ADD PRIMARY KEY (`id_kategori`);
 
 --
--- Indeks untuk tabel `tb_kategori_staff`
+-- Indexes for table `tb_kategori_staff`
 --
 ALTER TABLE `tb_kategori_staff`
   ADD PRIMARY KEY (`id_kategori`);
 
 --
--- Indeks untuk tabel `tb_layanan`
+-- Indexes for table `tb_komentar`
+--
+ALTER TABLE `tb_komentar`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_layanan`
 --
 ALTER TABLE `tb_layanan`
   ADD PRIMARY KEY (`id_layanan`);
 
 --
--- Indeks untuk tabel `tb_portfolio`
+-- Indexes for table `tb_portfolio`
 --
 ALTER TABLE `tb_portfolio`
   ADD PRIMARY KEY (`id_portfolio`);
 
 --
--- Indeks untuk tabel `tb_setting`
+-- Indexes for table `tb_setting`
 --
 ALTER TABLE `tb_setting`
   ADD PRIMARY KEY (`id_setting`);
 
 --
--- Indeks untuk tabel `tb_staff`
+-- Indexes for table `tb_staff`
 --
 ALTER TABLE `tb_staff`
   ADD PRIMARY KEY (`id_staff`);
 
 --
--- Indeks untuk tabel `tb_user`
+-- Indexes for table `tb_user`
 --
 ALTER TABLE `tb_user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- Indeks untuk tabel `tb_user_token`
+-- Indexes for table `tb_user_token`
 --
 ALTER TABLE `tb_user_token`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `tb_berita`
+-- AUTO_INCREMENT for table `request_logs`
+--
+ALTER TABLE `request_logs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `tb_berita`
 --
 ALTER TABLE `tb_berita`
   MODIFY `id_berita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_client`
+-- AUTO_INCREMENT for table `tb_client`
 --
 ALTER TABLE `tb_client`
   MODIFY `id_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_file`
+-- AUTO_INCREMENT for table `tb_file`
 --
 ALTER TABLE `tb_file`
   MODIFY `id_file` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_kategori_berita`
+-- AUTO_INCREMENT for table `tb_kategori_berita`
 --
 ALTER TABLE `tb_kategori_berita`
   MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_kategori_client`
+-- AUTO_INCREMENT for table `tb_kategori_client`
 --
 ALTER TABLE `tb_kategori_client`
   MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_kategori_portfolio`
+-- AUTO_INCREMENT for table `tb_kategori_portfolio`
 --
 ALTER TABLE `tb_kategori_portfolio`
   MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_kategori_staff`
+-- AUTO_INCREMENT for table `tb_kategori_staff`
 --
 ALTER TABLE `tb_kategori_staff`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_layanan`
+-- AUTO_INCREMENT for table `tb_komentar`
+--
+ALTER TABLE `tb_komentar`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `tb_layanan`
 --
 ALTER TABLE `tb_layanan`
   MODIFY `id_layanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_portfolio`
+-- AUTO_INCREMENT for table `tb_portfolio`
 --
 ALTER TABLE `tb_portfolio`
   MODIFY `id_portfolio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_setting`
+-- AUTO_INCREMENT for table `tb_setting`
 --
 ALTER TABLE `tb_setting`
   MODIFY `id_setting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_staff`
+-- AUTO_INCREMENT for table `tb_staff`
 --
 ALTER TABLE `tb_staff`
-  MODIFY `id_staff` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=502;
+  MODIFY `id_staff` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=520;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_user`
+-- AUTO_INCREMENT for table `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id_user` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_user` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_user_token`
+-- AUTO_INCREMENT for table `tb_user_token`
 --
 ALTER TABLE `tb_user_token`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

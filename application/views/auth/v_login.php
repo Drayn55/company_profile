@@ -32,17 +32,17 @@ $pesan = 'Selamat ' . $salam;
   <title><?= $title; ?> &rsaquo; <?= $subtitle; ?></title>
 
   <!-- General CSS Files -->
-  <link rel="stylesheet" href="<?= base_url() ?>vendor/back-end/assets/css/bootstrap.min.css">
-  <script src="<?= base_url(); ?>vendor/back-end/assets/js/bootstrap.bundle.min.js"></script>
-  <link rel="stylesheet" href="<?= base_url() ?>vendor/back-end/assets/fonts/fontawesome/css/all.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="<?= base_url() ?>vendor/back-end/assets/fonts/iconic/css/material-design-iconic-font.min.css">
+  <link rel="stylesheet" href="https://company.drayn.my.id/vendor/back-end/assets/css/bootstrap.min.css">
+  <script src="https://company.drayn.my.id/vendor/back-end/assets/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://company.drayn.my.id/vendor/back-end/assets/fonts/fontawesome/css/all.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://company.drayn.my.id/vendor/back-end/assets/fonts/iconic/css/material-design-iconic-font.min.css">
   <!-- CSS Libraries -->
   <!-- Template CSS -->
   <link rel="shortcut icon" href="<?= base_url('assets/img/company/') . $image; ?>" type="image/x-icon">
-  <link rel="stylesheet" href="<?= base_url() ?>vendor/back-end/assets/css/style.css">
-  <link rel="stylesheet" href="<?= base_url() ?>vendor/back-end/assets/css/components.css">
+  <link rel="stylesheet" href="https://company.drayn.my.id/vendor/back-end/assets/css/style.css">
+  <link rel="stylesheet" href="https://company.drayn.my.id/vendor/back-end/assets/css/components.css">
 
-  <link rel="stylesheet" href="<?= base_url() ?>vendor/back-end/assets/plugins/toastr/toastr.min.css">
+  <link rel="stylesheet" href="https://company.drayn.my.id/vendor/back-end/assets/plugins/toastr/toastr.min.css">
 </head>
 
 <body>
@@ -105,7 +105,7 @@ $pesan = 'Selamat ' . $salam;
             </div>
           </div>
         </div>
-        <div class="col-lg-8 col-12 order-lg-2 order-1 min-vh-100 background-walk-y position-relative overlay-gradient-bottom" data-background="<?= base_url() ?>vendor/back-end/assets/img/unsplash/login-bg.jpg">
+        <div class="col-lg-8 col-12 order-lg-2 order-1 min-vh-100 background-walk-y position-relative overlay-gradient-bottom" data-background="https://company.drayn.my.id/vendor/back-end/assets/img/unsplash/login-bg.jpg">
           <div class="absolute-bottom-left index-2">
             <div class="text-light p-5 pb-2">
               <div class="mb-5 pb-3">
@@ -121,20 +121,20 @@ $pesan = 'Selamat ' . $salam;
   </div>
 
   <!-- General JS Scripts -->
-  <script src="<?= base_url(); ?>vendor/back-end/assets/js/jquery-3.3.1.min.js"></script>
-  <script src="<?= base_url(); ?>vendor/back-end/assets/js/bootstrap.min.js"></script>
-  <script src="<?= base_url(); ?>vendor/back-end/assets/js/jquery.nicescroll.min.js"></script>
-  <script src="<?= base_url(); ?>vendor/back-end/assets/js/moment.min.js"></script>
-  <script src="<?= base_url(); ?>vendor/back-end/assets/js/stisla.js"></script>
+  <script src="https://company.drayn.my.id/vendor/back-end/assets/js/jquery-3.3.1.min.js"></script>
+  <script src="https://company.drayn.my.id/vendor/back-end/assets/js/bootstrap.min.js"></script>
+  <script src="https://company.drayn.my.id/vendor/back-end/assets/js/jquery.nicescroll.min.js"></script>
+  <script src="https://company.drayn.my.id/vendor/back-end/assets/js/moment.min.js"></script>
+  <script src="https://company.drayn.my.id/vendor/back-end/assets/js/stisla.js"></script>
   <!-- JS Libraies -->
 
   <!-- Template JS File -->
-  <script src="<?= base_url(); ?>vendor/back-end/assets/js/scripts.js"></script>
-  <script src="<?= base_url(); ?>vendor/back-end/assets/js/custom.js"></script>
+  <script src="https://company.drayn.my.id/vendor/back-end/assets/js/scripts.js"></script>
+  <script src="https://company.drayn.my.id/vendor/back-end/assets/js/custom.js"></script>
 
   <!-- Page Specific JS File -->
   <!-- toast flashdata -->
-  <script src="<?= base_url(); ?>vendor/back-end/assets/plugins/toastr/toastr.min.js" type="text/javascript"></script>
+  <script src="https://company.drayn.my.id/vendor/back-end/assets/plugins/toastr/toastr.min.js" type="text/javascript"></script>
   <?php if ($this->session->flashdata('success')) : ?>
     <div class="success-message"><?= $this->session->flashdata('success') ?></div>
     <script type="text/javascript">

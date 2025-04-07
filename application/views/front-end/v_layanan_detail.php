@@ -14,12 +14,18 @@
   .blog .entry .entry-title a:hover {
     color: rgb(147, 107, 19);
   }
+
+  .blog .entry .custom-entry-img {
+    max-height: 440px;
+    margin: -30px -30px 20px -30px;
+    overflow: hidden;
+  }
 </style>
 <main id="main" style="background: #faebcd;">
 
   <!-- ======= Breadcrumbs ======= -->
   <section class="breadcrumbs" style="background: rgb(238, 219, 177);">
-    <div class="container">
+    <div class="container pt-3">
 
       <ol>
         <li><a href="<?= base_url('home/#hero'); ?>" style="color: #000">Home</a></li>
@@ -41,8 +47,8 @@
 
           <div class="card entry entry-single" style="background: rgb(238, 219, 177);">
 
-            <div class="entry-img">
-              <img src="<?= base_url('assets/img/layanan/') . $detail->gambar_layanan; ?>" alt="" class="img-responsive center-block d-block mx-auto">
+            <div class="custom-entry-img">
+              <img src="<?= base_url('assets/img/layanan/') . $detail->gambar_layanan; ?>" alt="" width="200" class="center-block d-block mx-auto py-4">
             </div>
 
             <h2 class="entry-title">
@@ -64,7 +70,7 @@
             <div class="sidebar-item search-form">
               <form action="">
                 <input type="text">
-                <button type="submit"  style="background: #faebcd;"><i class="bi bi-search text-dark"></i></button>
+                <button type="submit" style="background: #faebcd;"><i class="bi bi-search text-dark"></i></button>
               </form>
             </div><!-- End sidebar search formn-->
 
@@ -75,7 +81,7 @@
                 <div class="sidebar-item recent-posts">
                   <div class="post-item clearfix ">
                     <img src="<?= base_url('assets/img/layanan/') . $value->gambar_layanan; ?>" alt="">
-                    <h4 class="" >
+                    <h4 class="">
                       <a href="<?= base_url('home/detaillayanan/' . $value->slug_layanan); ?>" style="color: #000;"><?= $value->judul_layanan; ?></a>
                     </h4>
                   </div>

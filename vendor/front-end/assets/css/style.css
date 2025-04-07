@@ -437,11 +437,8 @@ section {
 .hero {
   width: 100%;
   height: 100vh;
-  background: url(../img/bg_New2.png) top center no-repeat;
+  background: url(../img/bg.png) top center no-repeat;
   background-size: cover;
-  /* background-color: rgb(238, 219, 177); Warna yang diinginkan */
-  /* background-blend-mode: multiply; Menggabungkan warna dengan gambar */
-  /* filter: saturate(0.3); Menurunkan saturasi gambar */
 }
 
 .hero h1 {

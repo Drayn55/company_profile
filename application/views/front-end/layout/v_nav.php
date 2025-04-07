@@ -65,8 +65,9 @@
       <li><a style="color:rgb(137, 76, 1);" class="getstarted scrollto hidde" href="<?= base_url('login'); ?>">Login</a></li>
     <?php endif; ?>
   </ul>
-  <i class="bi bi-list mobile-nav-toggle"></i>
-</nav><!-- .navbar -->
+  <i class="bi bi-list mobile-nav-toggle" style="color:  #684c0f;"></i>
+</nav>
+<!-- .navbar -->
 
 </div>
 </header><!-- End Header -->

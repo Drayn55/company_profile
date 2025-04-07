@@ -1,3 +1,53 @@
+<?php
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'phpmailer/src/Exception.php';
+require 'phpmailer/src/PHPMailer.php';
+require 'phpmailer/src/SMTP.php';
+
+$message = '';
+$messageType = '';
+
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["send"])) {
+  if (isset($_POST["email"], $_POST["name"], $_POST["subject"], $_POST["message"])) {
+    $mail = new PHPMailer(true);
+
+    try {
+      // Server settings
+      $mail->isSMTP();
+      $mail->Host       = 'smtp.gmail.com';
+      $mail->SMTPAuth   = true;
+      $mail->Username   = 'draynnakamura@gmail.com';
+      $mail->Password   = 'chlfqqsjlualbtza';
+      $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+      $mail->Port       = 465;
+
+      // Recipients
+      $mail->setFrom($_POST["email"], $_POST["name"]);
+      $mail->addAddress('draynnakamura@gmail.com');
+      $mail->addReplyTo($_POST["email"], $_POST["name"]);
+
+      // Content
+      $mail->isHTML(true);
+      $mail->Subject = $_POST["subject"];
+      $mail->Body    = nl2br(htmlspecialchars($_POST["message"]));
+
+      $mail->send();
+      $message = 'Message was sent successfully!';
+      $messageType = 'success';
+    } catch (Exception $e) {
+      $message = 'Message could not be sent. Error: ' . $mail->ErrorInfo;
+      $messageType = 'danger';
+    }
+  } else {
+    $message = 'Please fill in all required fields.';
+    $messageType = 'warning';
+  }
+}
+?>
+
 <style>
   .clients .clients-slider .swiper-pagination .swiper-pagination-bullet {
     width: 12px;
@@ -35,7 +85,18 @@
   .testimonials .swiper-pagination .swiper-pagination-bullet-active {
     background-color: rgb(241, 179, 65);
   }
-  
+
+  .service-box-link {
+    display: block;
+    color: inherit;
+    /* Warna teks mengikuti elemen parent */
+  }
+
+  .service-box-link:hover .service-box {
+    transform: scale(1.05);
+    /* Efek hover */
+    transition: transform 0.3s ease;
+  }
 </style>
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="hero d-flex align-items-center"
@@ -44,14 +105,18 @@
 
 
   <div class="container">
-    <div class="row">
+    <div class="row align-items-center justify-content-center gy-4">
       <div class="col-lg-6 d-flex flex-column justify-content-center">
-        <h1 data-aos="fade-up" style="color: #000;">Busur Trisula & Partners</h1>
+        <div class="col-8 col-lg-4 hero-img  mx-auto" data-aos="zoom-out" data-aos-delay="200">
+          <img src="<?= base_url('assets/img/company/lgo_baru_revisi.png'); ?>" class="img-fluid" alt="Dua Image">
+
+        </div>
+
+        <h1 data-aos="fade-up" style="color: #000;  padding-bottom: 40px; padding-top: 60px;  font-size: 55px; font-weight: 900;" class="text-lg-start text-center">Busur Trisula & Partners</h1>
         <h2 data-aos="fade-up" data-aos-delay="400" style="color: #000;">Creative Solution For Your Legal Problems</h2>
         <div data-aos="fade-up" data-aos-delay="600">
           <div class="text-center text-lg-start">
-            <a href="#about" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center" style=" background: rgb(250, 216, 148);
-  box-shadow: 0px 5px 30px rgb(170, 139, 74); color: #fff; color: #000">
+            <a href="#about" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center" style=" background: rgb(250, 216, 148);box-shadow: 0px 5px 30px rgb(170, 139, 74); color: #fff; color: #000">
               <span>Get Started</span>
               <i class="bi bi-arrow-right"></i>
             </a>
@@ -75,7 +140,7 @@
 
 <main id="main">
   <!-- ======= About Section ======= -->
-  <section style="background: #faebcd;" id="our-firm" class="about">
+  <section style="background:rgb(250, 235, 205);" id="our-firm" class="about">
 
     <div class="container" data-aos="fade-up">
       <div class="row gx-0">
@@ -109,6 +174,7 @@
   <!-- VISI MISI -->
   <!-- <hr> -->
   <section style="background: #faebcd;" id="visi-misi" class="values">
+
     <div class="container" data-aos="fade-up">
       <a href="#visi-misi" style="text-decoration: none; color: inherit;">
         <header class="section-header text-center pb-5">
@@ -116,8 +182,9 @@
         </header>
       </a>
     </div>
+
     <div class="container d-flex justify-content-center">
-      <div class="row justify-content-center">
+      <div class="d-flex flex-column gap-3 flex-md-row justify-content-center">
         <div class="col-lg-4">
           <div class="box text-center" data-aos="fade-up" data-aos-delay="200" style="background: rgb(238, 219, 177);">
             <h3 style="color: #000;">VISION</h3>
@@ -125,6 +192,7 @@
             <br>
           </div>
         </div>
+
         <div class="col-lg-4">
           <div class="box text-center" data-aos="fade-up" data-aos-delay="200" style="background: rgb(238, 219, 177);">
             <br>
@@ -134,6 +202,7 @@
         </div>
       </div>
     </div>
+
   </section>
 
   <!-- END VISI MISI -->
@@ -173,17 +242,19 @@
         <p style="color: #000;">Busur Trisula & Partners Specialist</p>
       </header>
 
-      <div class="row gy-4">
+      <div class="row gy-4 justify-content-center">
         <?php foreach ($layanan as $key => $value) :
           if ($value->status_layanan == "Publish") : ?>
             <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-              <div class="service-box" style="background: rgb(238, 219, 177);">
-                <div class="post-img">
-                  <img src="<?= base_url('assets/img/layanan/') . $value->gambar_layanan; ?>" alt="" class="img-fluid rounded " style="height: 100px; width:100px;">
+              <a href="<?= base_url('home/detaillayanan/' . $value->slug_layanan); ?>" class="service-box-link" style="text-decoration: none;">
+                <div class="service-box" style="background: rgb(238, 219, 177);">
+                  <div class="post-img">
+                    <img src="<?= base_url('assets/img/layanan/') . $value->gambar_layanan; ?>" alt="" class="img-fluid rounded" style="height: 100px; width:100px;">
+                  </div>
+                  <h3 class="pt-5" style="color: #000;"><?= $value->judul_layanan; ?></h3>
+                  <a href="<?= base_url('home/detaillayanan/' . $value->slug_layanan); ?>" class="read-more text-dark p-4"><span>Click For More Details</span> <i class="bi bi-arrow-right"></i></a>
                 </div>
-                <h3 class="pt-5"><?= $value->judul_layanan; ?></h3>
-                <a href="<?= base_url('home/detaillayanan/' . $value->slug_layanan); ?>" class="read-more text-dark"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
-              </div>
+              </a>
             </div>
           <?php endif; ?>
         <?php endforeach; ?>
@@ -197,38 +268,18 @@
   <section style="background: #faebcd;" id="counts" class="counts">
     <div class="container" data-aos="fade-up">
 
-      <div class="row gy-4">
+      <div class="row gy-4 justify-content-center">
 
         <div class="col-lg-3 col-md-6">
           <div class="count-box" style="background: rgb(238, 219, 177);">
-            <i class="bi bi-emoji-smile"></i>
+
+            <i class="bi bi-journal-richtext" style="color: #ee6c20;"></i>
             <div>
               <span data-purecounter-start="0" data-purecounter-end="<?= $this->M_dashboard->client()->total; ?>" data-purecounter-duration="1" class="purecounter text-dark"></span>
               <p> Clients</p>
             </div>
           </div>
         </div>
-
-        <div class="col-lg-3 col-md-6">
-          <div class="count-box" style="background: rgb(238, 219, 177);">
-            <i class="bi bi-journal-richtext" style="color: #ee6c20;"></i>
-            <div>
-              <span data-purecounter-start="0" data-purecounter-end="100" data-purecounter-duration="1" class="purecounter text-dark"></span>
-              <p>Projects</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6">
-          <div class="count-box" style="background: rgb(238, 219, 177);">
-            <i class="bi bi-headset" style="color: #15be56;"></i>
-            <div>
-              <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter text-dark"></span>
-              <p>Hours Of Support</p>
-            </div>
-          </div>
-        </div>
-
         <div class="col-lg-3 col-md-6">
           <div class="count-box" style="background: rgb(238, 219, 177);">
             <i class="bi bi-people" style="color: #bb0852;"></i>
@@ -249,7 +300,7 @@
       <header class="section-header text-center">
         <p class="pb-3 text-dark">OUR CLIENT & SUCCESS STORIES</p>
         <br>
-        <h3 class="pb-5 text-dark">We have successfully handled various high-profile cases across Indonesia, including:</h3>
+        <h3 class="pb-5 text-dark">We have successfully handled various high-profile cases across Indonesia, including</h3>
       </header>
 
       <div class="row justify-content-center">
@@ -296,9 +347,9 @@
       <header class="section-header">
         <p style="text-transform: none;" class="mb-4 text-dark">Retainer Legal</p>
         <br>
-        <p class="text-dark" style="text-transform: none; font-size: 25px; font-weight: 400;">Many businesses choose our retainer services, which provide ongoing legal assistance and consultation throughout the year. Our clients benefit from consistent, dedicated legal support without the hassle of case-by-case agreements.</p>
+        <p class="text-dark" style="text-transform: none; font-size: 18px; font-weight: 400;">Many businesses choose our retainer services, which provide ongoing legal assistance and consultation throughout the year. Our clients benefit from consistent, dedicated legal support without the hassle of case-by-case agreements.</p>
         <br>
-        <h3 class="pb-5"><b>Our Retainer Client</b></h3>
+        <h3 class="pb-5 pt-5"><b>Our Retainer Client</b></h3>
       </header>
 
       <div class="testimonials-slider swiper-container" data-aos="fade-up" data-aos-delay="200">
@@ -332,21 +383,22 @@
         <h2 class="text-dark">Team</h2>
         <p class="text-dark">Our hard working team</p>
       </header>
-      <div class="row gy-4 d-flex justify-content-center">
+      <div class="row gy-4 row-cols-2 justify-content-center pt-5">
         <?php foreach ($staff as $key => $value) :
           if ($value->publish == "Publish") : ?>
 
             <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-              <div class="member" style="text-align: center; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); overflow: hidden; transition: transform 0.3s ease; background: rgb(238, 219, 177);">
+              <div class="member" style="text-align: center; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); overflow: hidden; transition: transform 0.3s ease; background: rgb(238, 219, 177); width: 100%; max-width: 300px;">
 
                 <div class="member-img" style="width: 100%; height: 250px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
                   <img src="<?= base_url('assets/img/staff/') . $value->gambar_staff; ?>" class="img-fluid" alt="" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
 
                 <div class="member-info" style="padding: 15px;">
-                  <h4 style="font-size: 18px; font-weight: bold; margin-bottom: 5px;" class="text-dark"><?= $value->nama_staff; ?></h4>
-                  <span style="font-size: 14px; color: gray;"><?= $value->nama_kategori; ?></span>
-                  <p style="font-size: 14px; color: #555;"><?= $value->no_telepon; ?></p>
+                  <h4 class="text-dark" style="font-size: 18px; font-weight: bold; margin-bottom: 5px;">
+                    <?= $value->nama_staff; ?>
+                  </h4>
+                  <span style="font-size: 14px; color: gray; margin-bottom: 25px;"> <?= $value->nama_kategori; ?> </span>
                 </div>
 
               </div>
@@ -408,13 +460,19 @@
   <!-- ======= Contact Section ======= -->
   <section style="background: #faebcd;" id="contact" class="contact">
 
-    <div class="container" data-aos="fade-up">
+    <div class="container" data-aos="fade-up" id="contactFormSection">
 
       <header class="section-header mb-4">
         <h2 class="text-dark">Contact</h2>
         <p class="text-dark">Contact Us</p>
       </header>
 
+      <?php if (!empty($message)): ?>
+        <div class="alert alert-<?= $messageType; ?> alert-dismissible fade show" role="alert">
+          <?= $message; ?>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <?php endif; ?>
       <div class="row gy-4">
 
         <div class="col-lg-6">
@@ -453,23 +511,24 @@
         </div>
 
         <div class="col-lg-6">
-          <form id="whatsapp-form" class="php-email-form" style="background: rgb(238, 219, 177); padding: 30px; height: 100%;">
+          <!-- filepath: d:\XAMPP\program data\htdocs\companyprofile\application\views\front-end\v_home.php -->
+          <!-- <form method="post" class="php-email-form" style="background: rgb(238, 219, 177); padding: 30px; height: 100%;">
             <div class="row gy-4">
 
               <div class="col-md-6">
-                <input type="text" id="name" class="form-control" placeholder="Your Name" required style="background: #faebcd;">
+                <input type="text" id="name" class="form-control" placeholder="Your Name" name="name" required style="background: #faebcd;">
               </div>
 
               <div class="col-md-6">
-                <input type="email" id="email" class="form-control" placeholder="Your Email" required style="background: #faebcd;">
+                <input type="email" id="email" class="form-control" placeholder="Your Email" required style="background: #faebcd;" name="email">
               </div>
 
               <div class="col-md-12">
-                <input type="text" id="subject" class="form-control" placeholder="Subject" required style="background: #faebcd;">
+                <input type="text" name="subject" id="subject" class="form-control" placeholder="Subject" required style="background: #faebcd;">
               </div>
 
               <div class="col-md-12">
-                <textarea id="message" class="form-control" rows="6" placeholder="Message" required style="background: #faebcd;"></textarea>
+                <textarea id="message" name="message" class="form-control" rows="6" placeholder="Message" required style="background: #faebcd;"></textarea>
               </div>
 
               <div class="col-md-12 text-center">
@@ -477,40 +536,71 @@
                 <div class="error-message" style="color: #000;"></div>
                 <div class="sent-message">Your message has been sent. Thank you!</div>
 
-                <button type="button" class="btn-form-contact" style="background: #faebcd;
-                  border: 0;
-                  padding: 10px 30px;
-                  color: var(--base-black);
-                  transition: 0.4s;
-                  border-radius: 4px;" onclick="sendToWhatsApp()">Send Message</button>
+                <button type="submit" class="btn-form-contact" style="background: #faebcd;
+        border: 0;
+        padding: 10px 30px;
+        color: var(--base-black);
+        transition: 0.4s;
+        border-radius: 4px;" name="send" value="Send Message">Send Message</button>
               </div>
 
             </div>
+          </form> -->
+
+
+
+          <form id="contactForm" action="" method="post" style="background: rgb(238, 219, 177); padding: 30px; height: 100%;">
+            <div class="row gy-4">
+              <div class="col-md-6">
+                <input type="text" name="name" placeholder="Your name" required style="background: #faebcd;" class="form-control">
+              </div>
+              <div class="col-md-6">
+                <input type="email" name="email" placeholder="Email Address" required style="background: #faebcd;" class="form-control">
+              </div>
+              <div class="col-md-12">
+                <input type="text" name="subject" placeholder="Subject" required style="background: #faebcd;" class="form-control">
+              </div>
+              <div class="col-md-12">
+                <textarea name="message" cols="25" rows="7" placeholder="Type your message" required style="background: #faebcd;" class="form-control"></textarea>
+              </div>
+              <div class="submit-btn">
+                <input type="submit" name="send" value="Send Message" class="btn-form-contact" style="background: #faebcd;
+            border: 0;
+            padding: 10px 30px;
+            color: var(--base-black);
+            transition: 0.4s;
+            border-radius: 4px;">
+              </div>
+            </div>
           </form>
+          <!-- <div class="contact">
+            <h2>Contact Now</h2>
+
+          </div> -->
         </div>
 
-        <script>
+        <!-- <script>
           function sendToWhatsApp() {
-            var name = document.getElementById("name").value;
-            var email = document.getElementById("email").value;
-            var subject = document.getElementById("subject").value;
-            var message = document.getElementById("message").value;
-            var phoneNumber = "6288279761821"; // Ubah 0 menjadi 62 untuk nomor Indonesia
+            var name = document.getElementById(" name").value;
+                  var email=document.getElementById("email").value;
+                  var subject=document.getElementById("subject").value;
+                  var message=document.getElementById("message").value;
+                  var phoneNumber="6282268141720" ; // Ubah 0 menjadi 62 untuk nomor Indonesia
 
-            if (name === "" || email === "" || subject === "" || message === "") {
-              alert("Please fill in all fields.");
-              return;
-            }
+                  if (name==="" || email==="" || subject==="" || message==="" ) {
+                  alert("Please fill in all fields.");
+                  return;
+                  }
 
-            var whatsappURL = "https://wa.me/" + phoneNumber + "?text=" +
-              "Name: " + encodeURIComponent(name) + "%0A" +
-              "Email: " + encodeURIComponent(email) + "%0A" +
-              "Subject: " + encodeURIComponent(subject) + "%0A" +
-              "Message: " + encodeURIComponent(message);
+                  // Format pesan WhatsApp
+                  var whatsappURL="https://wa.me/" + phoneNumber + "?text=" +
+                  encodeURIComponent( "Name: " + name + "\n" + "Email: " + email + "\n" + "Subject: " + subject + "\n" + "Message: " + message
+                  );
 
-            window.open(whatsappURL, "_blank");
-          }
-        </script>
+                  // Buka URL WhatsApp di tab baru
+                  window.open(whatsappURL, "_blank" ).focus();
+                  }
+                  </script> -->
 
 
       </div>
@@ -520,3 +610,17 @@
   </section><!-- End Contact Section -->
 
 </main><!-- End #main -->
+
+<script>
+  // Scroll to form if there's a message
+  <?php if (!empty($message)): ?>
+    document.addEventListener("DOMContentLoaded", function() {
+      const formSection = document.getElementById("contactFormSection");
+      if (formSection) {
+        formSection.scrollIntoView({
+          behavior: "smooth"
+        });
+      }
+    });
+  <?php endif; ?>
+</script>

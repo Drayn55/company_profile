@@ -44,18 +44,26 @@
   .blog .blog-pagination li:hover a {
     color: #fff;
   }
+
+  .responsive-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    object-fit: cover;
+  }
 </style>
 <main id="main" style="background: #faebcd;">
 
   <!-- ======= Breadcrumbs ======= -->
   <section class="breadcrumbs" style="background: rgb(238, 219, 177); color: #000">
-    <div class="container">
+    <div class="container pt-3">
 
       <ol>
         <li><a href="<?= base_url('home/#hero'); ?>" style="color:rgb(141, 104, 31);">Home</a></li>
         <li>Blog</li>
       </ol>
-      <h2>Blog</h2>
+      <h2>Blog</h2> 
 
     </div>
   </section><!-- End Breadcrumbs -->
@@ -81,7 +89,7 @@
             if ($value->status_berita == "Publish") : ?>
               <div class="card mb-4 entry" style="background: rgb(238, 219, 177);">
                 <div class="entry-img">
-                  <img src="<?= base_url('assets/img/berita/') . $value->gambar_berita; ?>" alt="" class="img-responsive center-block d-block mx-auto">
+                  <img src="<?= base_url('assets/img/berita/') . $value->gambar_berita; ?>" alt="" class="img-responsive center-block d-block mx-auto responsive-img">
                 </div>
 
                 <h2 class="entry-title">
@@ -107,7 +115,7 @@
             <?php endif; ?>
           <?php endforeach; ?>
 
-          <div class="blog-pagination">
+          <div class="blog-pagination mb-5">
             <ul class="justify-content-center">
               <li><a href="#">1</a></li>
               <li class="active"><a href="#">2</a></li>
@@ -127,7 +135,8 @@
                 <input type="text">
                 <button type="submit" style="background: #faebcd;"><i class="bi bi-search text-dark"></i></button>
               </form>
-            </div><!-- End sidebar search formn-->
+            </div>
+            <!-- End sidebar search formn-->
 
             <h3 class="sidebar-title text-dark">Kategori</h3>
             <div class="sidebar-item categories">
