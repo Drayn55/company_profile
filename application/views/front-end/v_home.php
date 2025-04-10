@@ -98,9 +98,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["send"])) {
     transition: transform 0.3s ease;
   }
 
-  .hero .hero-img img{
-  border-radius: 15px;
-}
+  .hero .hero-img img {
+    border-radius: 15px;
+  }
+
+  .hero {
+    width: 100%;
+    height: 100vh;
+    background: url(<?= base_url('vendor/front-end/assets/img/bg.png') ?>) top center no-repeat;
+    background-size: cover;
+  }
 
   @media (max-width: 991px) {
     .hero {
