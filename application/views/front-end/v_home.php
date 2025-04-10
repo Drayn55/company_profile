@@ -97,25 +97,74 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["send"])) {
     /* Efek hover */
     transition: transform 0.3s ease;
   }
+
+  .hero .hero-img img{
+  border-radius: 15px;
+}
+
+  @media (max-width: 991px) {
+    .hero {
+      height: auto;
+      padding: 120px 0 60px 0;
+    }
+
+    .hero .hero-img {
+      text-align: center;
+      margin-top: 80px;
+    }
+
+    .hero .hero-img img {
+      width: 80%;
+      display: block;
+      margin: 0 auto;
+      border-radius: 15px;
+      max-width: 90%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+    }
+
+    .hero h2 {
+      font-size: 24px;
+    }
+
+    .hero .hero-img img {
+      width: 100%;
+    }
+  }
 </style>
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="hero d-flex align-items-center"
   style="background-color: #F7C873 !important; padding: 50px; border-radius: 10px; position: relative;">
 
 
-
   <div class="container">
     <div class="row align-items-center justify-content-center gy-4">
       <div class="col-lg-6 d-flex flex-column justify-content-center">
-        <div class="col-8 col-lg-4 hero-img  mx-auto" data-aos="zoom-out" data-aos-delay="200">
-          <img src="<?= base_url('assets/img/company/lgo_baru_revisi.png'); ?>" class="img-fluid" alt="Dua Image">
+        <div class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-lg-5 gap-0">
+          <div class="col-8 col-lg-6 hero-img  mx-auto" data-aos="zoom-out" data-aos-delay="200">
+            <img src="<?= base_url('assets/img/company/lgo_baru_revisi.png'); ?>" class="img-fluid" alt="Dua Image">
 
+          </div>
+
+          <div class="col-12 col-lg-8 hero-img text-center" data-aos="zoom-out" data-aos-delay="200">
+            <img src="<?= base_url('assets/img/photo/dua.jpg'); ?>" class="img-fluid" alt="Dua Image">
+
+          </div>
         </div>
 
-        <h1 data-aos="fade-up" style="color: #000;  padding-bottom: 40px; padding-top: 60px;  font-size: 55px; font-weight: 900;" class="text-lg-start text-center">Busur Trisula & Partners</h1>
-        <h2 data-aos="fade-up" data-aos-delay="400" style="color: #000;">Creative Solution For Your Legal Problems</h2>
+
+        <h1 data-aos="fade-up" style="color: #000;  padding-bottom: 40px; padding-top: 60px;  font-size: 55px; font-weight: 900;" class=" text-center">Busur Trisula & Partners</h1>
+        <h2 data-aos="fade-up" data-aos-delay="400" style="color: #000;" class="text-center">Creative Solution For Your Legal Problems</h2>
         <div data-aos="fade-up" data-aos-delay="600">
-          <div class="text-center text-lg-start">
+          <div class="text-center ">
             <a href="#about" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center" style=" background: rgb(250, 216, 148);box-shadow: 0px 5px 30px rgb(170, 139, 74); color: #fff; color: #000">
               <span>Get Started</span>
               <i class="bi bi-arrow-right"></i>
@@ -123,15 +172,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["send"])) {
           </div>
         </div>
       </div>
-      <div class="col-lg-6 hero-img text-center" data-aos="zoom-out" data-aos-delay="200">
-        <img src="<?= base_url('assets/img/photo/dua.jpg'); ?>" class="img-fluid" alt="Dua Image">
-
-      </div>
     </div>
+
   </div>
 
 
-</section><!-- End Hero -->
+</section>
+<!-- End Hero -->
 
 <!-- <br>
 <br>
